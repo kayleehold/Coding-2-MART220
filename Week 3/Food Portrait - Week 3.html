@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Donut</title>
+</head>
+
+<body>
+    <script>
+
+
+        /* Variables */
+        var xspeed;
+        var yspeed = 10;
+        var xsprinkle = 200;
+        var ysprinkle = 225;
+        var xspeed2;
+        var yspeed2 = 10;
+        var xsprinkle2 = 160;
+        var ysprinkle2 = 160;
+        var distanceLimit = 75;
+
+        var x = 100
+        var y = 100
+
+        function setup() {
+            createCanvas(400, 400);
+            xspeed = random(-1, 1)
+            yspeed = random(-1, 1)
+            xspeed2 = random(-1, 1)
+            yspeed2 = random(-1, 1)
+        }
+
+
+        function draw() {
+            background(220);
+
+
+            /* Text */
+            fill(250, 35, 92)
+            textSize(14);
+            text('Kaylee Holdsambeck', 250, 390);
+            textSize(25);
+            text('Yummy Donut', 20, 30);
+
+            /* Donutbody */
+            fill(181, 117, 78)
+            circle(200, 200, 150);
+            /* Center */
+            fill(207, 196, 190)
+            circle(200, 200, 50);
+
+
+            /* Sprinkes */
+            strokeWeight(.5)
+            fill(255, 255, 255)
+            circle(xsprinkle, ysprinkle, 6)
+
+            fill(80, 230, 128)
+            circle(xsprinkle2, ysprinkle2, 6)
+
+            fill(78, 164, 245)
+            circle(160, 160, 6)
+
+            fill(255, 38, 96)
+            circle(190, 160, 6)
+
+            fill(250, 134, 40)
+            circle(260, 180, 6)
+
+            fill(255, 248, 33)
+            circle(250, 210, 6)
+
+            fill(151, 33, 255)
+            circle(220, 150, 6)
+
+            fill(44, 81, 245)
+            circle(220, 250, 6)
+
+            fill(124, 245, 44)
+            circle(170, 250, 6)
+
+            fill(245, 51, 44)
+            circle(155, 220, 6)
+
+            fill(250, 35, 92)
+            circle(150, 190, 6)
+
+
+            /*  Sprinkles Moving */
+            xsprinkle += xspeed;
+            ysprinkle += yspeed;
+            xsprinkle2 += xspeed2;
+            ysprinkle2 += yspeed2;
+
+
+            /* Sprinkle bounce when reaching limit */
+            if (xsprinkle < 200 - distanceLimit || xsprinkle > 200 + distanceLimit) {
+                xspeed *= -1;
+            }
+
+            if (ysprinkle < 200 - distanceLimit || ysprinkle > 200 + distanceLimit) {
+                yspeed *= -1;
+            }
+
+            if (xsprinkle2 < 200 - distanceLimit || xsprinkle2 > 200 + distanceLimit) {
+                xspeed2 *= -1;
+            }
+
+            if (ysprinkle2 < 200 - distanceLimit || ysprinkle2 > 200 + distanceLimit) {
+                yspeed2 *= -1;
+            }
+
+
+            /* Pink square Mouse Movement */
+            fill(252, 3, 207)
+            square(x, y, 10)
+
+        }
+
+        function mouseMoved() {
+            x = mouseX;
+            y = mouseY;
+        }
+
+    </script>
+</body>
+
+</html>
