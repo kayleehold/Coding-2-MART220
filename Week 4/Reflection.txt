@@ -1,5 +1,0 @@
-I used chatgpt alot to check my code and see if it could corret the failure I had in my code. It was great to explain what went wrong and how I could improve things.
-
-My design was heavly influenced by chatgpt due to it's input and advice but mine feels more realistic compared to the other other code chatgpt made for me. 
-
-I learned a different way of doing things and chatgpt was like a helpful cheat sheet to check and compare my work while also explaining what I did wrong when I felt lost.
