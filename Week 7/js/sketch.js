@@ -1,6 +1,11 @@
 /* Could not get the radius of the collision to shrink so that the character could "eat" when closer to the donut so the donut is grayed out but is still technically there! -Kaylee */
 /* I collabed with Jessica Nelson! */
 
+/* To Do: 
+make more run cycle images ()
+ */
+
+
 
 /* Sprinkle Movement Variables */
 var xspeed;
