@@ -95,10 +95,6 @@ function setup() {
     xspeed2 = random(-1, 1)
     yspeed2 = random(-1, 1)
 
-    PNG = loadImage("../images/CD.png");
-    PNGspeedX = random(1, 5);
-    PNGspeedY = random(1, 5);
-
     PNG2 = loadImage("../images/HeartFlower.png");
     PNGspeedX2 = random(1, 5);
     PNGspeedY2 = random(1, 5);
