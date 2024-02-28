@@ -54,10 +54,10 @@ function setup() {
 
 /* Uploaded from teach */
     for (let k = 0; k < idleStrings.length; k++) {
-        idleArray.push(new myImage(idleStrings[k], 50, 300, 680, 472));
+        idleArray.push(new Sprite(idleStrings[k], 50, 300, 680, 472));
     }
     for (let k = 0; k < runStrings.length; k++) {
-        walkArray.push(new myImage(runStrings[k], 50, 300, 680, 472));
+        runArray.push(new Sprite(runStrings[k], 50, 300, 680, 472));
     }
 
     
