@@ -31,7 +31,7 @@ var objectToDraw;
 var i = 0;
 var flipX = false;
 
-var xImage = 50, yImage = 400;
+var xImage = 50, yImage = 100;
 
 /* Point Sytem */
 var score = 0;
@@ -66,10 +66,10 @@ function setup() {
 
 /* Uploaded from teach */
     for (let k = 0; k < idleStrings.length; k++) {
-        idleArray.push(new Sprite(idleStrings[k], 50, 300, 680, 472));
+        idleArray.push(new Sprite(idleStrings[k], 50, 100, 680, 472));
     }
     for (let k = 0; k < runStrings.length; k++) {
-        runArray.push(new Sprite(runStrings[k], 50, 300, 680, 472));
+        runArray.push(new Sprite(runStrings[k], 50, 100, 680, 472));
     }
 
     
