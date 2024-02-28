@@ -76,8 +76,9 @@ function setup() {
     }
 
     
-
+/* Timer stuff */
     setInterval(changeTime, 100);
+    setInterval(countDown, 1000);
 }
 
 function draw() {
@@ -115,6 +116,7 @@ if (keyIsPressed) {
         runArray[ii].updateX(xImage);
         runArray[ii].updateFlip(flipX);
         idleArray[ii].y = yImage
+        runArray[ii].y = yImage
         
         if (objectToEat != null) {
             if (runArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
@@ -165,7 +167,7 @@ else {
    textFont(theFont); /* <-- font  */
    textSize(14);
    textSize(25);
-   text("Score: " + score, 400, 50);
+   text("Score : " + score, 400, 50);
 
    fill(250, 35, 92);
    textSize(25);
@@ -193,9 +195,11 @@ function countDown() {
     myTime--;
     if (myTime < 0) {
         myTime = 10;
-        createANewFoodItem();
+        /* createANewFoodItem(); */
     }
 }
+
+
 /* Mouse Square */
 function mouseMoved() {
     xmouse = mouseX;
