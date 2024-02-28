@@ -32,6 +32,8 @@ var objectToDraw;
 var i = 0;
 var flipX = false;
 
+var xImage = 100, yImage = 25;
+
 
 
 function preload() {
@@ -104,17 +106,17 @@ if (keyIsPressed) {
     for (var ii = 0; ii < idleArray.length; ii++) {
         idleArray[ii].updateX(xImage);
         idleArray[ii].updateFlip(flipX);
-        walkArray[ii].updateX(xImage);
-        walkArray[ii].updateFlip(flipX);
+        runArray[ii].updateX(xImage);
+        runArray[ii].updateFlip(flipX);
         
         if (objectToEat != null) {
-            if (walkArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
+            if (runArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
                 objectToEat = null;
             }
         }
 
     }
-    objectToDraw = walkArray;
+    objectToDraw = runArray;
 }
 else {
     objectToDraw = idleArray;     
