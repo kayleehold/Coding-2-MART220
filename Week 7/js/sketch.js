@@ -1,6 +1,4 @@
-/* Kaylee Holdsambeck 
-Week 7 HW 
-*/
+/* Kaylee Holdsambeck - Week 7 HW - Worked with Jessica Nelson - Notes:*/
 
 /* Variables */
 
@@ -31,7 +29,8 @@ var objectToDraw;
 var i = 0;
 var flipX = false;
 
-var xImage = 50, yImage = 100;
+/* Sprite x&y */
+var xImage = 550, yImage = 100;
 
 /* Point Sytem */
 var score = 0;
@@ -66,10 +65,10 @@ function setup() {
 
 /* Uploaded from teach */
     for (let k = 0; k < idleStrings.length; k++) {
-        idleArray.push(new Sprite(idleStrings[k], 50, 100, 680, 472));
+        idleArray.push(new Sprite(idleStrings[k], 550, 100, 680, 472));
     }
     for (let k = 0; k < runStrings.length; k++) {
-        runArray.push(new Sprite(runStrings[k], 50, 100, 680, 472));
+        runArray.push(new Sprite(runStrings[k], 550, 100, 680, 472));
     }
 
     
