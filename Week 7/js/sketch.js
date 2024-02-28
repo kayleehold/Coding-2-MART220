@@ -8,9 +8,6 @@ Week 7 HW
 var xmouse = 100;
 var ymouse = 100;
 
-/* Font Variable */
-var theFont;
-
 /* Bouncing Food Images */
 var PNG2;
 var xPNG2 = 100, yPNG2 = 25;
@@ -34,7 +31,7 @@ var objectToDraw;
 var i = 0;
 var flipX = false;
 
-var xImage = 100, yImage = 25;
+var xImage = 50, yImage = 400;
 
 /* Point Sytem */
 var score = 0;
@@ -126,10 +123,12 @@ if (keyIsPressed) {
         }
 
     }
-    objectToDraw = runArray;
+
+    runArray[i].draw()    
 }
 else {
-    objectToDraw = idleArray;     
+   idleArray[i].draw() 
+       
 }
 
 
@@ -164,13 +163,12 @@ else {
 
    /* Text */
    fill(250, 35, 92)
-   textFont(theFont); /* <-- font  */
    textSize(14);
-   textSize(25);
+   textSize(30);
    text("Score : " + score, 400, 50);
 
    fill(250, 35, 92);
-   textSize(25);
+   textSize(30);
    text(myTime + " seconds", 50, 50);
 
 }
