@@ -1,7 +1,6 @@
-
-
-
-
+/* Kaylee Holdsambeck 
+Week 7 HW 
+*/
 
 /* Variables */
 
@@ -34,6 +33,9 @@ var flipX = false;
 
 var xImage = 100, yImage = 25;
 
+/* Point Sytem */
+var score = 0
+
 
 
 function preload() {
@@ -42,7 +44,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(1000, 1000);
+    createCanvas(1000, 600);
 
     /* Bouncing Images */
     xspeed = random(-1, 1)
@@ -108,10 +110,12 @@ if (keyIsPressed) {
         idleArray[ii].updateFlip(flipX);
         runArray[ii].updateX(xImage);
         runArray[ii].updateFlip(flipX);
+        idleArray[ii].y = yImage
         
         if (objectToEat != null) {
             if (runArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
                 objectToEat = null;
+                /* console.log("pls") */
             }
         }
 
