@@ -21,9 +21,16 @@ var PNGspeedX3, PNGspeedY3;
 /* Sprite movement Var */
 var idleArray = [];
 var runArray = [];
+var idleStrings = [];
+var runStrings = [];
 
-/* Font Variable */
-var theFont;
+
+/* Copy and pasted from teach */
+var objectToEat;
+var objectToDraw;
+
+var i = 0;
+var flipX = false;
 
 
 
@@ -114,4 +121,47 @@ else {
 }
 
 
+   /* Image 2 & 3*/
+   image(PNG2, xPNG2, yPNG2)
+   xPNG2 += PNGspeedX2;
+   yPNG2 += PNGspeedY2;
+
+   if(xPNG2 >= width-100 || xPNG2 <= 0)
+   {
+       PNGspeedX2 *=-1;
+   }
+
+   if(yPNG2 >= height-100 || yPNG2 <= 0)
+   {
+       PNGspeedY2 *=-1;
+   }
+
+   image(PNG3, xPNG3, yPNG3)
+   xPNG3 += PNGspeedX3;
+   yPNG3 += PNGspeedY3;
+
+   if(xPNG3 >= width-100 || xPNG3 <= 0)
+   {
+       PNGspeedX3 *=-1;
+   }
+
+   if(yPNG3 >= height-100 || yPNG3 <= 0)
+   {
+       PNGspeedY3 *=-1;
+   }
+
+
+}
+
+function changeTime() {
+    i++;
+    if (i > idleArray.length - 1) {
+        i = 0;
+    }
+}
+
+/* Mouse Square */
+function mouseMoved() {
+    xmouse = mouseX;
+    ymouse = mouseY;
 }
