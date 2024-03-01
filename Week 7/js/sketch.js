@@ -1,4 +1,4 @@
-/* Kaylee Holdsambeck - Week 7 HW - Worked with Jessica Nelson - Notes:*/
+/* Kaylee Holdsambeck - Week 7 HW - Worked with Jessica Nelson - Notes: Couldn't get the hit boxes exactly right but it works besides that*/
 
 /* Variables */
 
@@ -77,8 +77,8 @@ function setup() {
     setInterval(countDown, 1000);
 
     /* Creating Food Image Variables */
-    objectToEat = new Sprite("../images/Lemon.png", 500, 200, 100, 100);
-    objectToEat2 = new Sprite("../images/Strawberry.png", 500, 200, 100, 100);
+    objectToEat = new Sprite("../images/Lemon.png", 400, 200, 100, 100);
+    objectToEat2 = new Sprite("../images/Strawberry.png", 100, 200, 100, 100);
 }
 
 function draw() {
@@ -135,9 +135,6 @@ if (keyIsPressed) {
                 /* console.log("pls") */
                 score++;
             }
-        }
-        if (objectToEat == null) {
-            objectToEat.draw();
         }
 
     }
@@ -225,8 +222,22 @@ function countDown() {
     myTime--;
     if (myTime < 0) {
         myTime = 10;
-        /* createANewFoodItem(); */
+        createLemon();
+        createStrawberry();
     }
+}
+
+function createLemon()
+{
+    console.log("HI");
+    objectToEat = new Sprite("../images/Lemon.png", random(50, width-100), random(50,height-100), 100, 100);
+
+}
+
+function createStrawberry()
+{
+    objectToEat2 = new Sprite("../images/Strawberry.png", random(50, width-100), random(50,height-100), 100, 100);
+
 }
 
 
