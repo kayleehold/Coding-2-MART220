@@ -18,7 +18,7 @@ class Sprite {
          this.flipX = flipX;
      }
      draw() {
-         
+      rect(this.x  , this.y+150, this.w/2, this.h/4);
          if (this.flipX) {
              // The push and pop functions save and reset the previous transformation.
              push();
@@ -36,12 +36,12 @@ class Sprite {
      }
  
      checkCollision(x2, y2, w2, h2) {
- 
+      
          if (
-             this.x/2 - this.w / 2 < x2 + w2 / 2 &&
-             this.x/2 + w2 / 2 > x2 - this.w / 2 &&
-             this.y/8 - h2 / 2 < y2 + this.h / 2 &&
-             this.y/8 + h2 / 2 > y2 - this.h / 2
+             this.x - this.w / 2 < x2 + w2 / 2 &&
+             this.x + w2 / 2 > x2 - this.w / 2 &&
+             this.y+150 - h2 / 4 < y2 + this.h / 4 &&
+             this.y+150 + h2 / 4 > y2 - this.h / 4
      
          ) {
              return true;

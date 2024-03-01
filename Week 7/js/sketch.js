@@ -56,7 +56,7 @@ function setup() {
     PNGspeedX2 = random(1, 5);
     PNGspeedY2 = random(1, 5);
 
-    PNG3 = loadImage("../images/Strawberry.png");
+    PNG3 = loadImage("../images/Strawberry.png", );
     PNGspeedX3 = random(1, 5);
     PNGspeedY3 = random(1, 5);
 
@@ -75,6 +75,10 @@ function setup() {
 /* Timer stuff */
     setInterval(changeTime, 100);
     setInterval(countDown, 1000);
+
+    /* Creating Food Image Variables */
+    objectToEat = new Sprite("../images/Lemon.png", 500, 200, 100, 100);
+    objectToEat2 = new Sprite("../images/Strawberry.png", 500, 200, 100, 100);
 }
 
 function draw() {
@@ -90,6 +94,9 @@ if (objectToEat != null) {
     objectToEat.draw();
 }
 
+if (objectToEat2 != null) {
+    objectToEat2.draw();
+}
 if (keyIsPressed) {
     if (key == "w") {
         yImage -= 1;
@@ -118,7 +125,19 @@ if (keyIsPressed) {
             if (runArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
                 objectToEat = null;
                 /* console.log("pls") */
+                score++;
             }
+        }
+
+        if (objectToEat2 != null) {
+            if (runArray[ii].checkCollision(objectToEat2.x, objectToEat2.y, objectToEat2.w, objectToEat2.h)) {
+                objectToEat2 = null;
+                /* console.log("pls") */
+                score++;
+            }
+        }
+        if (objectToEat == null) {
+            objectToEat.draw();
         }
 
     }
@@ -130,35 +149,49 @@ else {
        
 }
 
+/* Character movement copy & paste teach */
+if (objectToEat != null) {
+    objectToEat.draw();
+}
+
+if (objectToEat2 != null) {
+    objectToEat2.draw();
+}
 
    /* Image 2 & 3*/
-   image(PNG2, xPNG2, yPNG2)
-   xPNG2 += PNGspeedX2;
-   yPNG2 += PNGspeedY2;
+   /* image(PNG2, xPNG2, yPNG2) */
+   if (objectToEat != null){
 
-   if(xPNG2 >= width-100 || xPNG2 <= 0)
+   objectToEat.x += PNGspeedX2;
+   objectToEat.y += PNGspeedY2;
+
+
+   if(objectToEat.x >= width-100 || objectToEat.x <= 0)
    {
        PNGspeedX2 *=-1;
    }
 
-   if(yPNG2 >= height-100 || yPNG2 <= 0)
+   if(objectToEat.y >= height-100 || objectToEat.y <= 0)
    {
        PNGspeedY2 *=-1;
    }
+}
 
-   image(PNG3, xPNG3, yPNG3)
-   xPNG3 += PNGspeedX3;
-   yPNG3 += PNGspeedY3;
+if (objectToEat2 != null){
+   /* image(PNG3, xPNG3, yPNG3) */
+   objectToEat2.x += PNGspeedX3;
+   objectToEat2.y += PNGspeedY3;
 
-   if(xPNG3 >= width-100 || xPNG3 <= 0)
+   if(objectToEat2.x >= width-100 || objectToEat2.x <= 0)
    {
        PNGspeedX3 *=-1;
    }
 
-   if(yPNG3 >= height-100 || yPNG3 <= 0)
+   if(objectToEat2.y >= height-100 || objectToEat2.y <= 0)
    {
        PNGspeedY3 *=-1;
    }
+}
 
    /* Text */
    fill(250, 35, 92)
