@@ -36,11 +36,20 @@ var xImage = 550, yImage = 100;
 var score = 0;
 var myTime = 10;
 
+/* Sounds */
+var goodFood;
+var badFood;
+var bgMusic;
+
 
 
 function preload() {
     idleStrings = loadStrings("../textfiles/idle.txt");
     runStrings = loadStrings("../textfiles/run.txt");
+
+    goodFood = loadSound("../textfiles/run.txt");
+    badFood = loadSound("../textfiles/run.txt");
+    bgMusic = loadSound("../textfiles/run.txt");
 }
 
 function setup() {
