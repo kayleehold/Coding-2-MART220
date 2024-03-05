@@ -7,13 +7,22 @@ var xmouse = 100;
 var ymouse = 100;
 
 /* Bouncing Food Images */
+
+/* Banana */
+var PNG1;
+var xPNG1 = 115, yPNG1 = 50;
+var PNGspeedX1, PNGspeedY1;
+
+/* Lemon */
 var PNG2;
 var xPNG2 = 100, yPNG2 = 25;
 var PNGspeedX2, PNGspeedY2;
 
+/* Strawberry */
 var PNG3;
 var xPNG3 = 95, yPNG3 = 90;
 var PNGspeedX3, PNGspeedY3;
+
 
 /* Sprite movement Var */
 var idleArray = [];
@@ -47,9 +56,9 @@ function preload() {
     idleStrings = loadStrings("../textfiles/idle.txt");
     runStrings = loadStrings("../textfiles/run.txt");
 
-    goodFood = loadSound("../textfiles/run.txt");
-    badFood = loadSound("../textfiles/run.txt");
-    bgMusic = loadSound("../textfiles/run.txt");
+    goodFood = loadSound("../sounds/Good.mp3");
+    badFood = loadSound("../sounds/Bad.mp3");
+    bgMusic = loadSound("../sounds/JustAGirl.mp3");
 }
 
 function setup() {
@@ -61,6 +70,10 @@ function setup() {
     xspeed2 = random(-1, 1)
     yspeed2 = random(-1, 1)
 
+    PNG1 = loadImage("../images/Banana.png");
+    PNGspeedX1 = random(1, 5);
+    PNGspeedY1 = random(1, 5);
+
     PNG2 = loadImage("../images/Lemon.png");
     PNGspeedX2 = random(1, 5);
     PNGspeedY2 = random(1, 5);
@@ -69,7 +82,7 @@ function setup() {
     PNGspeedX3 = random(1, 5);
     PNGspeedY3 = random(1, 5);
 
-    theFont = loadFont('../fonts/billieeilish.ttf');
+    
 
 
 /* Uploaded from teach */
@@ -88,6 +101,7 @@ function setup() {
     /* Creating Food Image Variables */
     objectToEat = new Sprite("../images/Lemon.png", 400, 200, 100, 100);
     objectToEat2 = new Sprite("../images/Strawberry.png", 100, 200, 100, 100);
+    objectNotToEat = new Sprite("../images/Banana.png", 100, 200, 100, 100);
 }
 
 function draw() {
@@ -105,7 +119,14 @@ if (objectToEat != null) {
 
 if (objectToEat2 != null) {
     objectToEat2.draw();
+    
 }
+
+if (objectNotToEat != null) {
+    objectNotToEat.draw();
+    
+}
+
 if (keyIsPressed) {
     if (key == "w") {
         yImage -= 1;
@@ -135,6 +156,7 @@ if (keyIsPressed) {
                 objectToEat = null;
                 /* console.log("pls") */
                 score++;
+                goodFood.play();
             }
         }
 
@@ -143,6 +165,16 @@ if (keyIsPressed) {
                 objectToEat2 = null;
                 /* console.log("pls") */
                 score++;
+                goodFood.play();
+            }
+        }
+
+        if (objectNotToEat != null) {
+            if (runArray[ii].checkCollision(objectNotToEat.x, objectNotToEat.y, objectNotToEat.w, objectNotToEat.h)) {
+                objectNotToEat = null;
+                /* console.log("pls") */
+                score--;
+                badFood.play();
             }
         }
 
@@ -164,7 +196,28 @@ if (objectToEat2 != null) {
     objectToEat2.draw();
 }
 
-   /* Image 2 & 3*/
+if (objectNotToEat != null) {
+    objectNotToEat.draw();
+}
+   /* Image 1 & 2 & 3*/
+   /* image(PNG1, xPNG1, yPNG1) */
+   if (objectNotToEat != null){
+
+    objectNotToEat.x += PNGspeedX1;
+    objectNotToEat.y += PNGspeedY1;
+ 
+ 
+    if(objectNotToEat.x >= width-100 || objectNotToEat.x <= 0)
+    {
+        PNGspeedX1 *=-1;
+    }
+ 
+    if(objectNotToEat.y >= height-100 || objectNotToEat.y <= 0)
+    {
+        PNGspeedY1 *=-1;
+    }
+ }
+
    /* image(PNG2, xPNG2, yPNG2) */
    if (objectToEat != null){
 
@@ -183,8 +236,9 @@ if (objectToEat2 != null) {
    }
 }
 
-if (objectToEat2 != null){
    /* image(PNG3, xPNG3, yPNG3) */
+if (objectToEat2 != null){
+
    objectToEat2.x += PNGspeedX3;
    objectToEat2.y += PNGspeedY3;
 
@@ -198,6 +252,8 @@ if (objectToEat2 != null){
        PNGspeedY3 *=-1;
    }
 }
+
+
 
    /* Text */
    fill(250, 35, 92)
@@ -233,7 +289,15 @@ function countDown() {
         myTime = 10;
         createLemon();
         createStrawberry();
+        createBanana();
     }
+}
+
+function createBanana()
+{
+    console.log("HI");
+    objectNotToEat = new Sprite("../images/Banana.png", random(50, width-100), random(50,height-100), 100, 100);
+
 }
 
 function createLemon()
@@ -254,4 +318,14 @@ function createStrawberry()
 function mouseMoved() {
     xmouse = mouseX;
     ymouse = mouseY;
+}
+
+/* Music */
+function mousePressed()
+{
+    playMySound();
+}
+function playMySound()
+{
+    bgMusic.loop();
 }
