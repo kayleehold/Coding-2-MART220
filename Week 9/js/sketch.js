@@ -30,6 +30,9 @@ var runArray = [];
 var idleStrings = [];
 var runStrings = [];
 
+/* Week 9 copy and paste variables */
+var myAnimation;
+var myWalkAnimation;
 
 /* Copy and pasted from teach */
 var objectToEat;
@@ -49,7 +52,6 @@ var myTime = 10;
 var goodFood;
 var badFood;
 var bgMusic;
-
 
 
 function preload() {
@@ -99,7 +101,7 @@ function setup() {
     setInterval(countDown, 1000);
 
     /* Creating Food Image Variables */
-    objectToEat = new Sprite("../images/Lemon.png", 400, 200, 100, 100);
+    objectToEat = new Sprite("../images/Lemon.png", 400, 200, 100, 100,);
     objectToEat2 = new Sprite("../images/Strawberry.png", 100, 200, 100, 100);
     objectNotToEat = new Sprite("../images/Banana.png", 100, 200, 100, 100);
 }
@@ -113,145 +115,62 @@ function draw() {
     
 
 /* Character movement copy & paste teach */
-if (objectToEat != null) {
-    objectToEat.draw();
-}
-
-if (objectToEat2 != null) {
-    objectToEat2.draw();
-    
-}
-
-if (objectNotToEat != null) {
-    objectNotToEat.draw();
-    
-}
-
-if (keyIsPressed) {
-    if (key == "w") {
-        yImage -= 1;
-    }
-    if (key == "s") {
-        yImage += 1;
-    }
-    if (key == "a") {
-        xImage -= 1;
-        flipX = true;
-    }
-    if (key == "d") {
-        xImage += 1;
-        flipX = false;
-    }
-
-    for (var ii = 0; ii < idleArray.length; ii++) {
-        idleArray[ii].updateX(xImage);
-        idleArray[ii].updateFlip(flipX);
-        runArray[ii].updateX(xImage);
-        runArray[ii].updateFlip(flipX);
-        idleArray[ii].y = yImage
-        runArray[ii].y = yImage
+if(kb.pressing('d'))
+{
+    if(myAnimation.isColliding(PNG2))
+    {
+        myAnimation.drawAnimation('idle');
+        myAnimation.updatePosition('idle');
         
-        if (objectToEat != null) {
-            if (runArray[ii].checkCollision(objectToEat.x, objectToEat.y, objectToEat.w, objectToEat.h)) {
-                objectToEat = null;
-                /* console.log("pls") */
-                score++;
-                goodFood.play();
-            }
-        }
-
-        if (objectToEat2 != null) {
-            if (runArray[ii].checkCollision(objectToEat2.x, objectToEat2.y, objectToEat2.w, objectToEat2.h)) {
-                objectToEat2 = null;
-                /* console.log("pls") */
-                score++;
-                goodFood.play();
-            }
-        }
-
-        if (objectNotToEat != null) {
-            if (runArray[ii].checkCollision(objectNotToEat.x, objectNotToEat.y, objectNotToEat.w, objectNotToEat.h)) {
-                objectNotToEat = null;
-                /* console.log("pls") */
-                score--;
-                badFood.play();
-            }
-        }
-
-    }
-
-    runArray[i].draw()    
-}
-else {
-   idleArray[i].draw() 
-       
-}
-
-/* Character movement copy & paste teach */
-if (objectToEat != null) {
-    objectToEat.draw();
-}
-
-if (objectToEat2 != null) {
-    objectToEat2.draw();
-}
-
-if (objectNotToEat != null) {
-    objectNotToEat.draw();
-}
-   /* Image 1 & 2 & 3*/
-   /* image(PNG1, xPNG1, yPNG1) */
-   if (objectNotToEat != null){
-
-    objectNotToEat.x += PNGspeedX1;
-    objectNotToEat.y += PNGspeedY1;
- 
- 
-    if(objectNotToEat.x >= width-100 || objectNotToEat.x <= 0)
+    }  
+    else if(myAnimation.isColliding(brainImage))
     {
-        PNGspeedX1 *=-1;
-    }
- 
-    if(objectNotToEat.y >= height-100 || objectNotToEat.y <= 0)
+        brainImage.remove();
+        
+    }  
+    myAnimation.updatePosition('forward');
+    myAnimation.drawAnimation('walk');    
+      
+}
+else if(kb.pressing('a'))
+{
+    if(myAnimation.isColliding(catImage))
     {
-        PNGspeedY1 *=-1;
-    }
- }
-
-   /* image(PNG2, xPNG2, yPNG2) */
-   if (objectToEat != null){
-
-   objectToEat.x += PNGspeedX2;
-   objectToEat.y += PNGspeedY2;
-
-
-   if(objectToEat.x >= width-100 || objectToEat.x <= 0)
-   {
-       PNGspeedX2 *=-1;
-   }
-
-   if(objectToEat.y >= height-100 || objectToEat.y <= 0)
-   {
-       PNGspeedY2 *=-1;
-   }
+        myAnimation.drawAnimation('idle');
+        myAnimation.updatePosition('idle');  
+    }  
+    myAnimation.updatePosition('reverse');
+    myAnimation.drawAnimation('walk');        
 }
+else if(kb.pressing('w'))
+{
+    if(myAnimation.isColliding(catImage))
+    {
+        myAnimation.drawAnimation('idle');
+        myAnimation.updatePosition('idle');
+        
+    }  
+    myAnimation.updatePosition('up');
+    myAnimation.drawAnimation('walk'); 
 
-   /* image(PNG3, xPNG3, yPNG3) */
-if (objectToEat2 != null){
-
-   objectToEat2.x += PNGspeedX3;
-   objectToEat2.y += PNGspeedY3;
-
-   if(objectToEat2.x >= width-100 || objectToEat2.x <= 0)
-   {
-       PNGspeedX3 *=-1;
-   }
-
-   if(objectToEat2.y >= height-100 || objectToEat2.y <= 0)
-   {
-       PNGspeedY3 *=-1;
-   }
 }
+else if(kb.pressing('s'))
+{
+    if(myAnimation.isColliding(catImage))
+    {
+        myAnimation.drawAnimation('idle');
+        myAnimation.updatePosition('idle');
+        
+    }  
+    myAnimation.updatePosition('down');   
+    myAnimation.drawAnimation('walk');        
+}
+else
+{
+    myAnimation.drawAnimation('idle');
+} 
+
+brainImage.debug = mouseIsPressed;
 
 
 
