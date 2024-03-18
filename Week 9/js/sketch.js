@@ -66,6 +66,11 @@ function preload() {
 function setup() {
     createCanvas(1000, 600);
 
+   /*  Animation copy and paste */
+    myAnimation = new Sprite( 200, 200, 150, 150);
+    myAnimation.myLoadAnimation('idle', idleArray);
+    myAnimation.myLoadAnimation('run', runArray);
+
     /* Bouncing Images */
     xspeed = random(-1, 1)
     yspeed = random(-1, 1)
