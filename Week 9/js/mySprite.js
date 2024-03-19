@@ -1,4 +1,4 @@
-class Sprite {
+class mySprite {
 
     constructor(x, y, w, h) {
         this.x = x;
@@ -26,7 +26,7 @@ class Sprite {
     createAnimation() {
         this.currentAnimation = new Sprite(this.x, this.y);
         this.currentAnimation.rotation = 0;
-        this.currentAnimation.frameDelay=500;
+        this.currentAnimation.frameDelay=40;
     }
 
     myLoadAnimation(animationType, fileNames) {
@@ -38,7 +38,7 @@ class Sprite {
 
 
     drawAnimation(animationType) {
-         
+        
         this.currentAnimation.scale = .5;
         this.currentAnimation.changeAnimation(animationType);
         this.currentAnimation.rotation = 0;
@@ -54,18 +54,18 @@ class Sprite {
             this.currentAnimation.speed = 2;
         }
         
-        if (animationType == 'walk' && this.direction == 'forward') {
+        if (animationType == 'run' && this.direction == 'forward') {
             this.currentAnimation.direction = 0;
             this.currentAnimation.mirror.x = false;
         }
-        else if (animationType == 'walk' && this.direction == 'reverse') {
+        else if (animationType == 'run' && this.direction == 'reverse') {
             this.currentAnimation.mirror.x = true;
             this.currentAnimation.direction = 180;
         }
-        else if (animationType == 'walk' && this.direction == 'up') {
+        else if (animationType == 'run' && this.direction == 'up') {
             this.currentAnimation.direction = 270;
         }
-        else if (animationType == 'walk' && this.direction == 'down') {
+        else if (animationType == 'run' && this.direction == 'down') {
             this.currentAnimation.direction = 90;
         }
 

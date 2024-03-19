@@ -15,7 +15,7 @@ var PNGspeedX1, PNGspeedY1;
 
 /* Lemon */
 var PNG2;
-var xPNG2 = 100, yPNG2 = 25;
+var xPNG2, yPNG2;
 var PNGspeedX2, PNGspeedY2;
 
 /* Strawberry */
@@ -25,9 +25,9 @@ var PNGspeedX3, PNGspeedY3;
 
 
 /* Sprite movement Var */
-var idleArray = [];
-var runArray = [];
-var idleStrings = [];
+//var idleArray = [];
+//var runArray = [];
+var idleStrings = []; //textfiles array
 var runStrings = [];
 
 /* Week 9 copy and paste variables */
@@ -45,7 +45,7 @@ var flipX = false;
 var xImage = 550, yImage = 100;
 
 /* Point Sytem */
-var score = 0;
+var health = 5;
 var myTime = 10;
 
 /* Sounds */
@@ -58,58 +58,41 @@ function preload() {
     idleStrings = loadStrings("../textfiles/idle.txt");
     runStrings = loadStrings("../textfiles/run.txt");
 
-    goodFood = loadSound("../sounds/Good.mp3");
-    badFood = loadSound("../sounds/Bad.mp3");
-    bgMusic = loadSound("../sounds/JustAGirl.mp3");
 }
 
 function setup() {
     createCanvas(1000, 600);
 
    /*  Animation copy and paste */
-    myAnimation = new Sprite( 200, 200, 150, 150);
-    myAnimation.myLoadAnimation('idle', idleArray);
-    myAnimation.myLoadAnimation('run', runArray);
+    myAnimation = new mySprite( 200, 200, 150, 150);
+    myAnimation.myLoadAnimation('idle', idleStrings);
+    myAnimation.myLoadAnimation('run', runStrings);
 
-    /* Bouncing Images */
-    xspeed = random(-1, 1)
-    yspeed = random(-1, 1)
-    xspeed2 = random(-1, 1)
-    yspeed2 = random(-1, 1)
+     //compact way to add an image
+    PNG1 = new Sprite(random(200, 900), random(100,500),100,100, 'static');
+    PNG1.img = "../images/Banana.png";
+    PNG1.scale = 0.5;
+    PNG1.diameter = 50;
 
-    PNG1 = loadImage("../images/Banana.png");
-    PNGspeedX1 = random(1, 5);
-    PNGspeedY1 = random(1, 5);
+      //compact way to add an image
+    PNG2 = new Sprite(random(200, 900), random(100,500),100,100, 'static');
+    PNG2.img = "../images/Lemon.png";
+    PNG2.scale = 0.5;
+    PNG2.diameter = 10;
 
-    PNG2 = loadImage("../images/Lemon.png");
-    PNGspeedX2 = random(1, 5);
-    PNGspeedY2 = random(1, 5);
-
-    PNG3 = loadImage("../images/Strawberry.png", );
-    PNGspeedX3 = random(1, 5);
-    PNGspeedY3 = random(1, 5);
-
+    //compact way to add an image
+    PNG3 = new Sprite(random(200, 900), random(100,500),100,100, 'static');
+    PNG3.img = "../images/Strawberry.png";
+    PNG3.scale = 0.5;
+    PNG3.diameter = 10;
     
-
-
-/* Uploaded from teach */
-    for (let k = 0; k < idleStrings.length; k++) {
-        idleArray.push(new Sprite(idleStrings[k], 550, 100, 680, 472));
-    }
-    for (let k = 0; k < runStrings.length; k++) {
-        runArray.push(new Sprite(runStrings[k], 550, 100, 680, 472));
-    }
 
     
 /* Timer stuff */
     setInterval(changeTime, 100);
     setInterval(countDown, 1000);
 
-    /* Creating Food Image Variables */
-    objectToEat = new Sprite("../images/Lemon.png", 400, 200, 100, 100,);
-    objectToEat2 = new Sprite("../images/Strawberry.png", 100, 200, 100, 100);
-    objectNotToEat = new Sprite("../images/Banana.png", 100, 200, 100, 100);
-}
+} 
 
 function draw() {
     background(220);
@@ -117,65 +100,89 @@ function draw() {
     /* Pink square Mouse Movement */
     fill(252, 3, 207)
     square(xmouse, ymouse, 10)
-    
+
+
 
 /* Character movement copy & paste teach */
 if(kb.pressing('d'))
 {
     if(myAnimation.isColliding(PNG2))
     {
-        myAnimation.drawAnimation('idle');
-        myAnimation.updatePosition('idle');
+
+        PNG2.remove();
+        health++
+        PNG2 = new Sprite(random(200, 900), random(100,500),100,100, 'static');
+        PNG2.img = "../images/Lemon.png";
+        PNG2.scale = 0.5;
+        PNG2.diameter = 10;
         
     }  
-    else if(myAnimation.isColliding(brainImage))
+    else if(myAnimation.isColliding(PNG1))
     {
-        brainImage.remove();
+        PNG1.remove();
+        health--
+        PNG1 = new Sprite(random(200, 900), random(100,500),100,100, 'static');
+        PNG1.img = "../images/Banana.png";
+        PNG1.scale = 0.5;
+        PNG1.diameter = 50;
         
-    }  
+    } 
+    else if(myAnimation.isColliding(PNG3))
+    {
+        PNG3.remove();
+        health++
+        PNG3 = new Sprite(random(200, 900), random(100,500),100,100, 'static');
+        PNG3.img = "../images/Strawberry.png";
+        PNG3.scale = 0.5;
+        PNG3.diameter = 10;
+        
+    } 
     myAnimation.updatePosition('forward');
-    myAnimation.drawAnimation('walk');    
+    myAnimation.drawAnimation('run');    
       
 }
 else if(kb.pressing('a'))
 {
-    if(myAnimation.isColliding(catImage))
+    if(myAnimation.isColliding(PNG2))
     {
-        myAnimation.drawAnimation('idle');
-        myAnimation.updatePosition('idle');  
+        PNG2.remove();
+        health++
+        PNG2.img
     }  
     myAnimation.updatePosition('reverse');
-    myAnimation.drawAnimation('walk');        
+    myAnimation.drawAnimation('run');        
 }
 else if(kb.pressing('w'))
 {
-    if(myAnimation.isColliding(catImage))
+    if(myAnimation.isColliding(PNG1))
     {
-        myAnimation.drawAnimation('idle');
-        myAnimation.updatePosition('idle');
+        PNG2.remove();
+        health++
+        PNG2.img
         
-    }  
+    } 
     myAnimation.updatePosition('up');
-    myAnimation.drawAnimation('walk'); 
+    myAnimation.drawAnimation('run'); 
 
 }
 else if(kb.pressing('s'))
 {
-    if(myAnimation.isColliding(catImage))
+    if(myAnimation.isColliding(PNG1))
     {
-        myAnimation.drawAnimation('idle');
-        myAnimation.updatePosition('idle');
+        PNG2.remove();
+        health++
+        PNG2.img
         
-    }  
+    } 
     myAnimation.updatePosition('down');   
-    myAnimation.drawAnimation('walk');        
+    myAnimation.drawAnimation('run');        
 }
 else
 {
     myAnimation.drawAnimation('idle');
 } 
 
-brainImage.debug = mouseIsPressed;
+/* PNG2.debug = mouseIsPressed; */
 
 
 
@@ -183,11 +190,21 @@ brainImage.debug = mouseIsPressed;
    fill(250, 35, 92)
    textSize(14);
    textSize(30);
-   text("Score : " + score, 400, 50);
+   text("Health : " + health, 400, 50);
 
-   fill(250, 35, 92);
-   textSize(30);
-   text(myTime + " seconds", 50, 50);
+
+    /*  Winner and Bad Display */
+   if (health == 10) {
+    fill(250, 35, 92)
+    textSize(60);
+    text("Winner", 400, 300);
+    
+}
+else if (health == 0) {
+    fill(250, 35, 92)
+    textSize(60);
+    text("Too Bad", 400, 300);
+}
 
 }
 
@@ -195,14 +212,14 @@ brainImage.debug = mouseIsPressed;
 /* Timers */
 function changeTime() {
     i++;
-    if (i > idleArray.length - 1) {
+    if (i > idleStrings.length - 1) {
         i = 0;
     }
 }
 
 function changeTime() {
     i++;
-    if (i > idleArray.length - 1) {
+    if (i > idleStrings.length - 1) {
         i = 0;
     }
 }
@@ -211,30 +228,8 @@ function countDown() {
     myTime--;
     if (myTime < 0) {
         myTime = 10;
-        createLemon();
-        createStrawberry();
-        createBanana();
+    
     }
-}
-
-function createBanana()
-{
-    console.log("HI");
-    objectNotToEat = new Sprite("../images/Banana.png", random(50, width-100), random(50,height-100), 100, 100);
-
-}
-
-function createLemon()
-{
-    console.log("HI");
-    objectToEat = new Sprite("../images/Lemon.png", random(50, width-100), random(50,height-100), 100, 100);
-
-}
-
-function createStrawberry()
-{
-    objectToEat2 = new Sprite("../images/Strawberry.png", random(50, width-100), random(50,height-100), 100, 100);
-
 }
 
 
@@ -242,14 +237,4 @@ function createStrawberry()
 function mouseMoved() {
     xmouse = mouseX;
     ymouse = mouseY;
-}
-
-/* Music */
-function mousePressed()
-{
-    playMySound();
-}
-function playMySound()
-{
-    bgMusic.loop();
 }
