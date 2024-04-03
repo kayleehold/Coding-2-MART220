@@ -54,7 +54,7 @@ var bgMusic;
 
 /* Particles */
 const particles = [];
-var phealth = 1;
+var phealth = 100;
 
 
 
@@ -99,7 +99,7 @@ function setup() {
 } 
 
 function draw() {
-    background(220);
+    background(120);
 
     /* Pink square Mouse Movement */
     fill(252, 3, 207)
@@ -119,18 +119,15 @@ if(kb.pressing('d'))
         PNG2.img = "../images/Lemon.png";
         PNG2.scale = 0.5;
         PNG2.diameter = 10;
-        
 
-        /* Particles testing*/
-        if (dist(myAnimation.getCurrentAnimation().position.x, myAnimation.getCurrentAnimation().position.y, PNG2.position.x, PNG2.position.y) < 200) {
-            createParticles(PNG2.position.x, PNG2.position.y);
-            phealth -= 1;
+        /* Particles */
+        createParticles(PNG2.position.x, PNG2.position.y);
+        phealth -= 1;
             if(phealth <= 0)
             {
                 PNG2.remove();
-                PNG2 = null;
-            }    
-        }
+                PNG2 = null; }
+
         
     }  
     else if(myAnimation.isColliding(PNG1))
@@ -141,6 +138,14 @@ if(kb.pressing('d'))
         PNG1.img = "../images/Banana.png";
         PNG1.scale = 0.5;
         PNG1.diameter = 50;
+
+        /* Particles */
+        createParticles(PNG1.position.x, PNG1.position.y);
+        phealth -= 1;
+            if(phealth <= 0)
+            {
+                PNG1.remove();
+                PNG1 = null; }
         
     } 
     else if(myAnimation.isColliding(PNG3))
@@ -151,6 +156,14 @@ if(kb.pressing('d'))
         PNG3.img = "../images/Strawberry.png";
         PNG3.scale = 0.5;
         PNG3.diameter = 10;
+
+        /* Particles */
+        createParticles(PNG3.position.x, PNG3.position.y);
+        phealth -= 1;
+            if(phealth <= 0)
+            {
+                PNG3.remove();
+                PNG3 = null; }
         
     } 
     myAnimation.updatePosition('forward');
