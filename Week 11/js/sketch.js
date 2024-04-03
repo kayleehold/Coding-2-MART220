@@ -6,7 +6,6 @@
 var xmouse = 100;
 var ymouse = 100;
 
-/* Bouncing Food Images */
 
 /* Banana */
 var PNG1;
@@ -52,6 +51,9 @@ var myTime = 10;
 var goodFood;
 var badFood;
 var bgMusic;
+
+/* Particles */
+const particles = [];
 
 
 function preload() {
