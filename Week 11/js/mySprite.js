@@ -36,6 +36,12 @@ class mySprite {
         this.currentAnimation.height = 150;
     }
 
+    /* For Particles */
+    getCurrentAnimation()
+    {
+        return this.currentAnimation;
+    }
+
 
     drawAnimation(animationType) {
         
