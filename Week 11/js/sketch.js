@@ -1,4 +1,10 @@
-/* Kaylee Holdsambeck - Week 7 HW - Worked with Jessica Nelson - Notes: Couldn't get the hit boxes exactly right but it works besides that*/
+/* Kaylee Holdsambeck - Week 11 HW - 
+ Notes: There are particles when you eat the fruit but my code is written differently then yours and
+ I wasn't able to find a way to get the particles to stay on the screen.
+ Been overwhelmed with a few things in life right now and I couldn't find the time to schedule a meeting
+ before the due date. 
+ 
+ tried my best so thanks for reading!!*/
 
 /* Variables */
 
