@@ -3,9 +3,9 @@
 /* Variables */
 
 
-function preload() {
-    
-
+let img;
+function preload(){
+  img = loadImage(“path/to/img.jpg”);
 }
 
 function setup() {
@@ -31,6 +31,7 @@ function draw() {
     rotateZ(frameCount * 0.01);
     rotateX(frameCount * 0.01);
     rotateY(frameCount * 0.01);
+    texture(img);
     box(70, 70, 70);
     pop();
   
