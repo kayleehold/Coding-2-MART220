@@ -1,23 +1,33 @@
 /* Kaylee Holdsambeck - Week 12 HW - */
 
 /* Variables */
-
+var theFont;
 
 let img;
 function preload(){
   
+  theFont = loadFont('../font/billieeilish.ttf');
+
 }
 
 function setup() {
     createCanvas(700, 700, WEBGL);
-    img = loadImage('../texture/water.jpg');
+    flowerimg = loadImage('../textures/flower.jpg');
+    colorimg = loadImage('../textures/color.jpg');
     textureMode(NORMAL);
    
 }
 
 function draw() {
     background(250);
-  
+
+     /* Text */
+     fill(250, 35, 92)
+     textFont(theFont); /* <-- font  */
+     textSize(25);
+     text('Kaylee Beck - "fun!"', 20, 30);
+    
+    /* Shape 1 - Plane */
     normalMaterial();
     push();
     translate(-240, -100, 0);
@@ -27,23 +37,18 @@ function draw() {
     plane(70);
     pop();
   
+    /* Shape 2 - Box */
     push();
     translate(0, -100, 0);
     rotateZ(frameCount * 0.01);
     rotateX(frameCount * 0.01);
     rotateY(frameCount * 0.01);
-    texture(img);
-    box(70, 70, 70);
+    texture(flowerimg);
+    box(100, 100, 100);
     pop();
 
-    // Assuming img has 100 pixels width and height
-    beginShape();
-    vertex(0, 0, 0, 0, 0);
-    vertex(100, 0, 0, 1, 0);
-    vertex(100, 100, 0, 1, 1);
-    vertex(0, 100, 0, 0, 1);
-    endShape(CLOSE);
-  
+
+    /* Shape 3 - cylinder */
     push();
     translate(240, -100, 0);
     rotateZ(frameCount * 0.01);
@@ -51,7 +56,9 @@ function draw() {
     rotateY(frameCount * 0.01);
     cylinder(70, 70);
     pop();
-  
+
+    
+    /* Shape 4 - cone */
     push();
     translate(-250, 100, 0);
     rotateZ(frameCount * 0.01);
@@ -60,6 +67,7 @@ function draw() {
     cone(50, 70);
     pop();
   
+    /* Shape 5 - torus */
     push();
     translate(-75, 100, 0);  
     rotateZ(frameCount * 0.01);
@@ -67,21 +75,17 @@ function draw() {
     rotateY(frameCount * 0.01);
     torus(50, 20);
     pop();
-  
+
+    /* Shape 6 - sphere */
     push();
     translate(100, 100, 0);
     rotateZ(frameCount * 0.01);
     rotateX(frameCount * 0.01);
     rotateY(frameCount * 0.01);
     sphere(50);
+    texture(colorimg);
     pop();
   
-    push();
-    translate(275, 100, 0);
-    rotateZ(frameCount * 0.01);
-    rotateX(frameCount * 0.01);
-    rotateY(frameCount * 0.01);
-    ellipsoid(30, 40, 40);
-    pop();
+    
   }
   
