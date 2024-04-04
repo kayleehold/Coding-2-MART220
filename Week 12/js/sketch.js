@@ -5,7 +5,7 @@
 
 let img;
 function preload(){
-  img = loadImage(“path/to/img.jpg”);
+  img = loadImage('../texture/water.jpg');
 }
 
 function setup() {
