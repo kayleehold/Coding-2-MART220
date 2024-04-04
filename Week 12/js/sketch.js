@@ -5,12 +5,13 @@
 
 let img;
 function preload(){
-  img = loadImage('../texture/water.jpg');
+  
 }
 
 function setup() {
     createCanvas(700, 700, WEBGL);
-
+    img = loadImage('../texture/water.jpg');
+    textureMode(NORMAL);
    
 }
 
@@ -21,7 +22,7 @@ function draw() {
     push();
     translate(-240, -100, 0);
     rotateZ(frameCount * 0.01);
-    rotateX(frameCount * 0.01);
+    rotateX(frameCount * 5);
     rotateY(frameCount * 0.01);
     plane(70);
     pop();
@@ -34,6 +35,14 @@ function draw() {
     texture(img);
     box(70, 70, 70);
     pop();
+
+    // Assuming img has 100 pixels width and height
+    beginShape();
+    vertex(0, 0, 0, 0, 0);
+    vertex(100, 0, 0, 1, 0);
+    vertex(100, 100, 0, 1, 1);
+    vertex(0, 100, 0, 0, 1);
+    endShape(CLOSE);
   
     push();
     translate(240, -100, 0);
