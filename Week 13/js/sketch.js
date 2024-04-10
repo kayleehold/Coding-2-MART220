@@ -1,4 +1,4 @@
-/* Kaylee Holdsambeck - Week 12 HW - */
+/* Kaylee Beck - Week 13 HW - */
 
 /* Variables */
 var theFont;
@@ -17,26 +17,30 @@ function preload(){
 
   theFont = loadFont('../font/billieeilish.ttf');
 
-  backgroundImage = loadImage('../textures/background.jpg');
-
 }
 
 function setup() {
     createCanvas(700, 700, WEBGL);
     flowerimg = loadImage('../textures/flower.jpg');
-    colorimg = loadImage('../textures/color.jpg');
+    flowerimg1 = loadImage('../textures/flower1.jpg');
+    flowerimg2 = loadImage('../textures/flower2.jpg');
+    flowerimg3 = loadImage('../textures/flower3.jpg');
+    flowerimg4 = loadImage('../textures/flower4.jpg');
     beeimg = loadImage('../textures/bee.jpg');
     textureMode(NORMAL);
 
     boxPosition = createVector(-100, -100, 0);
     cylinderPosition = createVector(100, -100, -100);
+
+    backgroundImage = loadImage('../textures/background.jpg');
    
 }
 
 function draw() {
     background(250);
     
-     background(backgroundImage);
+    background(46, 171, 100);
+     /* background(backgroundImage); */ //why won't my image work?
      normalMaterial();
      
      /* Box */
@@ -54,7 +58,7 @@ function draw() {
      rotateZ(frameCount * 0.01);
      rotateX(frameCount * .5);
      rotateY(frameCount * 1);
-     texture(flowerimg);
+     texture(flowerimg1);
      cylinder(20, 50);
      pop();
  
@@ -63,7 +67,7 @@ function draw() {
      rotateZ(frameCount * 0.01);
      rotateX(frameCount * 1);
      rotateY(frameCount * 3);
-     texture(flowerimg);
+     texture(flowerimg2);
      cone(40, 70);
      pop();
  
@@ -72,7 +76,7 @@ function draw() {
      rotateZ(frameCount * 0.01);
      rotateX(frameCount * 5);
      rotateY(frameCount * 1);
-     texture(flowerimg);
+     texture(flowerimg3);
      ellipsoid(30, 40, 40);
      pop();
  
@@ -81,7 +85,7 @@ function draw() {
      rotateZ(frameCount * 0.01);
      rotateX(frameCount * 3);
      rotateY(frameCount * 1);
-     texture(flowerimg);
+     texture(flowerimg4);
      torus(30, 15);
      pop();
  
@@ -97,7 +101,7 @@ function draw() {
      pop();
 
           /* Text */
-          fill(214, 127, 0)
+          fill(46, 27, 6)
           textFont(theFont); /* <-- font  */
           textSize(25);
           text('Kaylee Beck - "Hey Honey(Bee)"', -30, 300);
