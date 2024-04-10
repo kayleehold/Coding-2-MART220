@@ -8,6 +8,7 @@ let shapes = [];
 let boxPosition;
 let cylinderPosition;
 
+let backgroundImage;
 
 let img;
 function preload(){
@@ -15,6 +16,8 @@ function preload(){
   bee = loadModel('../threeD/OBJ/beemodel.obj', true);
 
   theFont = loadFont('../font/billieeilish.ttf');
+
+  backgroundImage = loadImage('../textures/background.jpg');
 
 }
 
@@ -33,7 +36,7 @@ function setup() {
 function draw() {
     background(250);
     
-     background(200);
+     background(backgroundImage);
      normalMaterial();
      
      /* Box */
@@ -94,7 +97,7 @@ function draw() {
      pop();
 
           /* Text */
-          fill(250, 35, 92)
+          fill(214, 127, 0)
           textFont(theFont); /* <-- font  */
           textSize(25);
           text('Kaylee Beck - "Hey Honey(Bee)"', -30, 300);
