@@ -1,3 +1,9 @@
+/* Kaylee Beck - Week 13 HW - */
+
+// Q's why are all my varibale moving randomy What does it mean by "All shapes should rotate around the model at different speeds."
+
+/* Variables */
+
 let shapes = [];
 
 function preload() {
@@ -62,7 +68,8 @@ function setup() {
 }
 
 function draw() {
-    background(250);
+  background(46, 171, 100);
+  /* background(backgroundImage); */ //why won't my image work?
     normalMaterial();
 
     // Draw shapes from the array
