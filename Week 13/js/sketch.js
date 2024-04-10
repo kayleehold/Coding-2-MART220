@@ -1,6 +1,5 @@
 /* Kaylee Beck - Week 13 HW - */
 
-// Q's why are all my varibale moving randomy What does it mean by "All shapes should rotate around the model at different speeds."
 
 /* Variables */
 
