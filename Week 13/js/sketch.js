@@ -5,11 +5,14 @@ var theFont;
 
 let shapes = [];
 
+let boxPosition;
+let cylinderPosition;
+
 
 let img;
 function preload(){
   
-  teapot = loadModel('...', true);
+  bee = loadModel('../threeD/OBJ/beemodel.obj', true);
 
   theFont = loadFont('../font/billieeilish.ttf');
 
@@ -20,6 +23,9 @@ function setup() {
     flowerimg = loadImage('../textures/flower.jpg');
     colorimg = loadImage('../textures/color.jpg');
     textureMode(NORMAL);
+
+    boxPosition = createVector(-100, -100, 0);
+    cylinderPosition = createVector(100, -100, -100);
    
 }
 
@@ -37,67 +43,59 @@ function draw() {
      
      /* Box */
      push();
-     translate(-100,-100);
-     rotateX(frameCount * 0.01);
-     rotateY(frameCount * 0.01);
-     texture(img);
-     box(150, 150, 150);
+     translate(boxPosition.x, boxPosition.y, boxPosition.z);
+     rotateX(frameCount * 1);
+     rotateY(frameCount * 1);
+     texture(flowerimg);
+     box(50, 50, 50);
      pop();
      
      push();
-     translate(100,100);
-     rotateX(frameCount * 0.01);
-     rotateY(frameCount * 0.01);
-     texture(img);
+     translate(cylinderPosition.x, cylinderPosition.y, cylinderPosition.z);
+     rotateX(frameCount * 1);
+     rotateY(frameCount * 1);
+     texture(flowerimg);
      cylinder(20, 50);
      pop();
  
      push();
-     translate(100,100);
-     rotateX(frameCount * 0.01);
-     rotateY(frameCount * 0.01);
-     texture(img);
+     translate(-170, -60, -150);
+     rotateX(frameCount * 1);
+     rotateY(frameCount * 1);
+     texture(flowerimg);
      cone(40, 70);
      pop();
  
      push();
-     translate(100,100);
-     rotateX(frameCount * 0.01);
-     rotateY(frameCount * 0.01);
-     texture(img);
+     translate(160,120);
+     rotateX(frameCount * 5);
+     rotateY(frameCount * 1);
+     texture(flowerimg);
      ellipsoid(30, 40, 40);
      pop();
  
      push();
-     translate(100,100);
-     rotateX(frameCount * 0.01);
-     rotateY(frameCount * 0.01);
-     texture(img);
+     translate(60,190, -100);
+     rotateX(frameCount * 1);
+     rotateY(frameCount * 1);
+     texture(flowerimg);
      torus(30, 15);
      pop();
  
-     push();
-     rotateX(frameCount * 0.01);
-     rotateY(frameCount * 0.01);
-     translate(-100, -100);
-     texture(img);
-     beginShape();
-     vertex(0, 0, 100, 0, 0);
-     vertex(200, 0, 50, 1, 0);
-     vertex(200, 200, 100, 1, 1);
-     vertex(0, 200, 50, 0, 1);
-     endShape(CLOSE);
-     pop();
  
+     /* Model */
      push();
-     scale(0.4); // Scaled to make model fit into canvas
-     rotateX(frameCount * 0.01);
-     rotateY(frameCount * 0.01);
+     scale(0.8); // Scaled to make model fit into canvas
+     rotateX(frameCount * 1);
+     rotateY(frameCount * 1);
      normalMaterial(); // For effect
-     model(well);
+     model(bee);
      pop();
 
-  
-    
   }
   
+  function mouseClicked() {
+    // Update positions randomly when the mouse is clicked
+    boxPosition.set(random(-200, 0), random(-200, 0), random(-200, 200));
+    cylinderPosition.set(random(0, 200), random(-200, 0), random(-200, 200));
+  }
