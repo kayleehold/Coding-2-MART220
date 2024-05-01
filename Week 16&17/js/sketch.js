@@ -8,8 +8,8 @@ chnage variable to my liking a create some art!*/
 /* Variables */
 
 
-let minYchange = 0; //these two ranges determine line overlap and width
-let maxYchange = 50;
+let minYchange = -20; //these two ranges determine line overlap and width
+let maxYchange = 70;
 let layers = 5;
 let rotStripe = 0; //rotation of each stripe; try 10 or 90;
 // try lines = true with high alph or lines = false with low alph (100)
