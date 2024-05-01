@@ -1,126 +1,117 @@
-/* Kaylee Beck - Week 13 HW - */
+/* Kaylee Beck - Final Project - Credits to Steve's Makerspace on YouTube for the Tutorial on Coding Art
+
+This is not my original code but it is instead a combination or the teachings form Steve and AI to be better able to see if I can disect and understand 
+code and from someone else to create art is p5.js, this was super complex to read and understannd at first but once I did some learning I was able to understand the code,
+chnage variable to my liking a create some art!*/
 
 
 /* Variables */
 
-let shapes = [];
+
+let minYchange = 0; //these two ranges determine line overlap and width
+let maxYchange = 50;
+let layers = 5;
+let rotStripe = 0; //rotation of each stripe; try 10 or 90;
+// try lines = true with high alph or lines = false with low alph (100)
+let lines = true;
+let alph = 150; //out of 255
+let colRand = true; //true = random color; false = color from palette table
+let filling = true;
+let colorLines = false; //false for black lines
+let sw = 1; //line width
+let extraBlack = 0; //1 for some black line and white fills; 0 for neither; -2 for fewer colors;
+let extraBlackAlph = 255; //out of 255 - used if extraBlack=1 & lines, filling, colorLines all true, low alph, high sw
+let r, g, b;
+let table;
 
 function preload() {
-    bee = loadModel('../threeD/OBJ/beemodel.obj', true);
-
-    theFont = loadFont('../font/billieeilish.ttf');
+    table = loadTable("colors.csv", "csv", "header");
 }
 
 function setup() {
-    createCanvas(700, 700, WEBGL);
-    flowerimg = loadImage('../textures/flower.jpg');
-    flowerimg1 = loadImage('../textures/flower1.jpg');
-    flowerimg2 = loadImage('../textures/flower2.jpg');
-    flowerimg3 = loadImage('../textures/flower3.jpg');
-    flowerimg4 = loadImage('../textures/flower4.jpg');
-    beeimg = loadImage('../textures/bee.jpg');
-    textureMode(NORMAL);
-
-    boxPosition = createVector(-100, -100, 0);
-    cylinderPosition = createVector(100, -100, -100);
-
-    // Add shapes to the array
-    shapes.push({
-        translate: createVector(boxPosition.x, boxPosition.y, boxPosition.z),
-        rotate: createVector(0.01, 1, 1),
-        texture: flowerimg,
-        type: 'box',
-        dimensions: [50, 50, 50]
-    });
-
-    shapes.push({
-        translate: createVector(cylinderPosition.x, cylinderPosition.y, cylinderPosition.z),
-        rotate: createVector(0.01, 0.5, 1),
-        texture: flowerimg1,
-        type: 'cylinder',
-        dimensions: [20, 50]
-    });
-
-    shapes.push({
-        translate: createVector(-170, -60, -150),
-        rotate: createVector(0.01, 1, 3),
-        texture: flowerimg2,
-        type: 'cone',
-        dimensions: [40, 70]
-    });
-
-    shapes.push({
-        translate: createVector(160, 120, 0),
-        rotate: createVector(0.01, 5, 1),
-        texture: flowerimg3,
-        type: 'ellipsoid',
-        dimensions: [30, 40, 40]
-    });
-
-    shapes.push({
-        translate: createVector(60, 190, -100),
-        rotate: createVector(0.01, 3, 1),
-        texture: flowerimg4,
-        type: 'torus',
-        dimensions: [30, 15]
-    });
-}
-
-function draw() {
-  background(46, 171, 100);
-  /* background(backgroundImage); */ //why won't my image work?
-    normalMaterial();
-
-    // Draw shapes from the array
-    for (let shape of shapes) {
-        push();
-        translate(shape.translate.x, shape.translate.y, shape.translate.z);
-        rotateZ(frameCount * shape.rotate.x);
-        rotateX(frameCount * shape.rotate.y);
-        rotateY(frameCount * shape.rotate.z);
-        texture(shape.texture);
-        switch (shape.type) {
-            case 'box':
-                box(...shape.dimensions);
-                break;
-            case 'cylinder':
-                cylinder(...shape.dimensions);
-                break;
-            case 'cone':
-                cone(...shape.dimensions);
-                break;
-            case 'ellipsoid':
-                ellipsoid(...shape.dimensions);
-                break;
-            case 'torus':
-                torus(...shape.dimensions);
-                break;
-            default:
-                console.error('Unknown shape type:', shape.type);
+    let canv = createCanvas(windowWidth-20, windowHeight-20);
+    canv.mousePressed(setup);
+    if (lines == true) {
+      stroke(0, 0, 0, extraBlackAlph);
+      strokeWeight(sw);
+    } else {
+      noStroke();
+    }
+    angleMode(DEGREES);
+    let end = height / 2 + 500; //where lines stop
+    let palette = floor(random(676));
+    for (let i = 0; i < layers; i++) {
+      let y1;
+      if (i == 0) {
+        y1 = -height / 2 - 300;
+      } else {
+        y1 = -height / 2 + (height / layers) * i;
+      }
+      //starting height for each layer
+      let y2 = y1,
+        y3 = y1,
+        y4 = y1,
+        y5 = y1,
+        y6 = y1;
+      let rotLayer = random(359); //layer rotation
+      let rotThisStripe = 0;
+      //keep going until all the lines are at the bottom
+      while (
+        (y1 < end) &
+        (y2 < end) &
+        (y3 < end) &
+        (y4 < end) &
+        (y5 < end) &
+        (y6 < end) &
+        (-maxYchange < minYchange)
+      ) {
+        y1 += random(minYchange, maxYchange);
+        y2 += random(minYchange, maxYchange);
+        y3 += random(minYchange, maxYchange);
+        y4 += random(minYchange, maxYchange);
+        y5 += random(minYchange, maxYchange);
+        y6 += random(minYchange, maxYchange);
+        if (colRand == true) {
+          r = random(256);
+          g = random(256);
+          b = random(256);
+        } else {
+          let col = floor(random(5 + extraBlack));
+          r = table.get(palette, col * 3);
+          g = table.get(palette, col * 3 + 1);
+          b = table.get(palette, col * 3 + 2);
         }
+        if (filling == true) {
+          fill(r, g, b, alph);
+        } else {
+          noFill();
+        }
+        if (colorLines == true) {
+          stroke(r, g, b, alph);
+        }
+        push();
+        translate(width / 2, height / 2);
+        rotThisStripe += rotStripe; //rotating after each stripe
+        rotate(rotThisStripe + rotLayer);
+        let xStart = -width / 2;
+        beginShape();
+        curveVertex(xStart - 300, height / 2 + 500);
+        curveVertex(xStart - 300, y1);
+        curveVertex(xStart + (width / 5) * 1, y2);
+        curveVertex(xStart + (width / 5) * 2, y3);
+        curveVertex(xStart + (width / 5) * 3, y4);
+        curveVertex(xStart + (width / 5) * 4, y5);
+        curveVertex(width / 2 + 300, y6);
+        curveVertex(width / 2 + 300, height / 2 + 500);
+        endShape(CLOSE);
         pop();
+      }
     }
+  }
+  
 
-    /* Model */
-    push();
-    scale(0.8); // Scaled to make model fit into canvas
-    rotateZ(frameCount * 0.01);
-    rotateX(frameCount * 1);
-    rotateY(frameCount * 1);
-    texture(beeimg);
-    model(bee);
-    pop();
-
-    /* Text */
-    fill(46, 27, 6);
-    textFont(theFont); /* <-- font  */
-    textSize(25);
-    text('Kaylee Beck - "Hey Honey(Bee)"', -30, 300);
-}
-
-function mouseClicked() {
-    // Update positions randomly when the mouse is clicked
-    for (let shape of shapes) {
-        shape.translate.set(random(-200, 200), random(-200, 200), random(-200, 200));
+  function keyTyped() {
+    if (key === "s") {
+      save("myCanvas.jpg");
     }
-}
+  }
